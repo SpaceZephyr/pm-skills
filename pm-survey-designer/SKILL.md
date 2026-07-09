@@ -1,14 +1,14 @@
 ---
-name: SPACE-survey-designer
+name: pm-survey-designer
 description: |
   设计高质量调研问卷。当用户说"设计问卷"、"做个调研"、"帮我出份问卷"、"用户调研"、"满意度调查"、"NPS问卷"、"市场调研"、"需求调研"、"问卷设计"、"survey design"，
   或者用户描述了一个调研目标但还没有结构化的问卷时，使用这个 Skill。
   也适用于：用户上传了已有问卷要求优化/查偏差/补充题目；用户说"帮我检查这份问卷有没有问题"；用户需要设计 A/B 测试问卷、焦点小组访谈提纲、NPS/CSAT/CES 调查；
   用户提到"诱导题"、"双重问题"、"问卷偏差"等专业术语。
-  不适用于：纯数据分析（用 data-analysis）、纯用户访谈记录整理（用 content-digest）、纯产品需求文档（用 prd-writer）。
+  不适用于：纯数据分析（用 pm-analytics）、纯用户访谈记录整理（直接整理即可）、纯产品需求文档（用 pm-prd-writer）。
 ---
 
-# SPACE-survey-designer：从调研目标到高质量问卷
+# pm-survey-designer：从调研目标到高质量问卷
 
 ## 你的角色
 
@@ -337,3 +337,14 @@ Q1, Q2, Q3, Q4, Q6, Q7 — 已通过偏差审查 ✓
 ## 建议下一步
 先做什么再做什么，帮用户理清思路
 ```
+
+---
+
+## 上下游衔接
+
+本 Skill 是 pm-skills 工作流的一环，由 `pm-master` 总控统一路由。
+
+- **上游**：`pm-advisory-board`/Mom Test（先校正问法再出题，强烈建议）
+- **下游**：`pm-analytics`（问卷回收后做结果分析）、`pm-prioritization-engine`（调研洞察转需求排序）
+
+交接规则：链路模式下，完成后输出一段「交接摘要」（≤10 行：本步结论 + 下一步所需输入），供下一个 Skill 直接使用。

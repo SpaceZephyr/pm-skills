@@ -4,7 +4,7 @@ description: |
   生成结构化的上线复盘报告，包含目标达成、偏差原因、经验沉淀和后续行动项（含责任归因和改进 owner）。当用户说"写复盘""上线复盘""项目复盘""复盘报告""postmortem""版本回顾""迭代总结""上线总结"，
   或者用户提供了上线数据/过程记录/问题清单并要求结构化总结时，使用这个 Skill。
   也适用于：事故复盘（P0/P1 事故后的 RCA 报告）、OKR 复盘、季度复盘、A/B 实验复盘。
-  不适用于：纯需求撰写（用 prd-writer）、纯优先级排序（用 prioritization-engine）、周报日报（用 status-report）。
+  不适用于：纯需求撰写（用 pm-prd-writer）、纯优先级排序（用 pm-prioritization-engine）、周报日报（用 status-report）。
 ---
 
 # pm-postmortem-writer：从上线数据到可执行的复盘报告
@@ -335,3 +335,14 @@ description: |
 ## 参考文件
 
 - 归因方法详解：`references/root-cause-methods.md`
+
+---
+
+## 上下游衔接
+
+本 Skill 是 pm-skills 工作流的一环，由 `pm-master` 总控统一路由。
+
+- **上游**：`pm-analytics`（上线数据表现）、`pm-experiment-designer`（实验结论）、`pm-roadmap-planner`（原定目标作为对照基线）
+- **下游**：`pm-prioritization-engine`（行动项转需求进入下一轮排序）
+
+交接规则：链路模式下，完成后输出一段「交接摘要」（≤10 行：本步结论 + 下一步所需输入），供下一个 Skill 直接使用。

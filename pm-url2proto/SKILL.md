@@ -1,5 +1,5 @@
 ---
-name: web-prototype
+name: pm-url2proto
 description: |
   Clone live web pages into a local Next.js + Tailwind CSS project for rapid prototyping. Use this skill whenever a user shares a URL or screenshot and wants to replicate, redesign, or iterate on that page locally — whether they say "clone this site", "make a prototype based on this page", "recreate this UI", "build something that looks like this", or simply paste a link and ask you to turn it into code. Also trigger when the user wants to add new pages, modify existing pages, or extend a prototype project that was previously created by this skill. Even if the user just says "I want to build a page like X" with a reference link or image, this skill applies.
 ---
@@ -275,3 +275,14 @@ When you implement a feature (e.g., "修改密码" modal):
 - **Graceful degradation.** Use whatever tools work. A good prototype from an accessibility tree beats no prototype.
 - **Always type-check.** `npx tsc --noEmit`, zero errors, before every delivery.
 - **Always write the design doc.** Every feature change = code + doc entry in `designDocs.ts`.
+
+---
+
+## 上下游衔接
+
+本 Skill 是 pm-skills 工作流的一环，由 `pm-master` 总控统一路由。
+
+- **上游**：竞品参考 URL 常来自 `pm-competitor-deconstructor` 的拆解结论
+- **下游**：`pm-review-board`（原型可作为评审材料）
+
+交接规则：链路模式下，完成后输出一段「交接摘要」（≤10 行：本步结论 + 下一步所需输入），供下一个 Skill 直接使用。

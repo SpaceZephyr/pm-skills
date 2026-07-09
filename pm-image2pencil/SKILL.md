@@ -1,5 +1,5 @@
 ---
-name: image2pencil
+name: pm-image2pencil
 description: |
   将截图/设计稿复刻为 Pencil .pen 设计，并在同一画布旁输出结构化设计文档。用户提到“按图复刻”“照着截图画页面”“image to pencil”“做一个一模一样的页面”“根据这张图做设计稿”“输出设计图和文档”时使用本 Skill。
   也适用于：用户要求修改已有 .pen 页面、追加右侧设计文档、做像素级对齐、根据多张截图整合一套页面。
@@ -135,3 +135,14 @@ description: |
 
 - 信息收集：`references/intake-checklist.md`
 - 文档结构：`references/design-doc-template.md`
+
+---
+
+## 上下游衔接
+
+本 Skill 是 pm-skills 工作流的一环，由 `pm-master` 总控统一路由。
+
+- **上游**：`pm-prd-writer`（PRD 的界面交互描述）；要可运行 HTML 原型而非设计稿时改用 `pm-image2proto`
+- **下游**：`pm-review-board`（设计稿可作为评审材料）
+
+交接规则：链路模式下，完成后输出一段「交接摘要」（≤10 行：本步结论 + 下一步所需输入），供下一个 Skill 直接使用。

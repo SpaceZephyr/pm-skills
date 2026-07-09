@@ -1,14 +1,14 @@
 ---
-name: SPACE-experiment-designer
+name: pm-experiment-designer
 description: |
   A/B 实验设计 Skill。从实验目标出发，输出完整的实验方案（假设、分组、指标体系、样本量估算、止损规则、判定规则）。
   触发条件：用户提到"A/B 测试"、"AB 实验"、"实验设计"、"对照实验"、"分流实验"、"灰度方案"、"实验方案"、"样本量计算"、"显著性检验"、"实验评估"、"p值"、"置信区间"、"MDE"、"统计功效"、"实验周期"、"止损规则"等关键词。
   也适用于：用户提供了实验目标/可改动点/数据量级/周期限制要求产出实验方案；用户要求评估现有实验设计是否合理；用户要求制定实验判定标准和决策规则。
   典型输入：实验目标 + 可改动点 + 当前数据量级 + 可接受实验周期。
-  不适用于：纯数据分析（用 SPACE-analytics）、纯埋点设计（用 tracking-spec-writer）、纯PRD写作（用 SPACE-prd-writer）。
+  不适用于：纯数据分析（用 pm-analytics）、纯埋点设计（用 tracking-spec-writer）、纯PRD写作（用 pm-prd-writer）。
 ---
 
-# SPACE-experiment-designer：A/B 实验设计
+# pm-experiment-designer：A/B 实验设计
 
 ## 你的角色
 
@@ -516,3 +516,14 @@ description: |
 - [ ] 多重比较已考虑校正（如有）
 - [ ] 方案文档有 FAB + 设计文档面板（含复制 Markdown）
 - [ ] 文件保存在正确目录，命名格式 `MMDD-实验名-experiment.html`
+
+---
+
+## 上下游衔接
+
+本 Skill 是 pm-skills 工作流的一环，由 `pm-master` 总控统一路由。
+
+- **上游**：`pm-analytics`（待验证的归因假设）、`pm-prd-writer`（需灰度验证的功能）
+- **下游**：`pm-tracking-spec-writer`（实验指标需要的埋点）、`pm-postmortem-writer`（实验结束后复盘）
+
+交接规则：链路模式下，完成后输出一段「交接摘要」（≤10 行：本步结论 + 下一步所需输入），供下一个 Skill 直接使用。

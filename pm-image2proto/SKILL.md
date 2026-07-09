@@ -1,5 +1,5 @@
 ---
-name: space-image2proto
+name: pm-image2proto
 description: |
   Screenshot-to-HTML prototype generator with iterative refinement and learning memory. Use this skill whenever the user provides a screenshot, mockup, wireframe, or image of any UI and wants it reproduced as a working HTML prototype — or when they want to modify an existing prototype they previously generated. Also triggers on: "照这个做原型", "参考这个图", "把这个页面画出来", "this UI needs to be prototyped", "replicate this design", "convert this mockup to HTML", "帮我出个原型", "根据截图输出 HTML", or any image attachment combined with requests like "输出 HTML", "做成页面", "帮我实现". Even if the user just sends a screenshot with a brief instruction like "加一个字段" or "这个也一样", this skill applies — it means they want you to modify or replicate the UI shown. When in doubt, if there's a UI screenshot in the conversation, use this skill.
 ---
@@ -305,3 +305,14 @@ When the user asks for design notes, output a concise list summarizing what was 
 - ...
 
 Keep it factual and brief. The user wants a record they can share with their team, not a detailed essay.
+
+---
+
+## 上下游衔接
+
+本 Skill 是 pm-skills 工作流的一环，由 `pm-master` 总控统一路由。
+
+- **上游**：`pm-prd-writer`（PRD 的界面交互描述）、`pm-image2pencil`（要设计稿而非可运行原型时用它）
+- **下游**：`pm-review-board`（原型可作为评审材料）
+
+交接规则：链路模式下，完成后输出一段「交接摘要」（≤10 行：本步结论 + 下一步所需输入），供下一个 Skill 直接使用。

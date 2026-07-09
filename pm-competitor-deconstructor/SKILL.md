@@ -4,7 +4,7 @@ description: |
   按策略/功能/体验/增长四个维度结构化拆解竞品，输出可借鉴点、不可抄点与差异化建议。当用户说"竞品分析"、"竞品拆解"、"帮我分析竞品"、"看看这几个竞品"、"competitor analysis"、"和竞品比一下"、"对标分析"、"差异化怎么做"，
   或者用户给出了一份竞品名单并要求系统化分析时，使用这个 Skill。
   也适用于：用户上传了竞品截图/链接/体验报告并要求结构化拆解；用户要求对比自己产品与竞品的差距；用户想找差异化切入点。
-  不适用于：纯需求文档撰写（用 prd-writer）、纯优先级排序（用 prioritization-engine）、纯用户调研设计（用 survey-designer）。
+  不适用于：纯需求文档撰写（用 pm-prd-writer）、纯优先级排序（用 pm-prioritization-engine）、纯用户调研设计（用 pm-survey-designer）。
 ---
 
 # pm-competitor-deconstructor：从竞品名单到差异化策略
@@ -312,3 +312,13 @@ description: |
 
 - 四维度拆解详细指引：`references/analysis-framework.md`
 - 信息采集渠道清单：`references/data-sources.md`
+
+---
+
+## 上下游衔接
+
+本 Skill 是 pm-skills 工作流的一环，由 `pm-master` 总控统一路由。
+
+- **下游**：`pm-advisory-board`（"要不要跟进"是判断题，转顾问团）、`pm-prd-writer`（决定跟进后写 PRD）、`pm-prioritization-engine`（差异化机会放进需求池排序）
+
+交接规则：链路模式下，完成后输出一段「交接摘要」（≤10 行：本步结论 + 下一步所需输入），供下一个 Skill 直接使用。
